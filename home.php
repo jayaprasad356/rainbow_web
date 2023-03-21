@@ -26,7 +26,7 @@ include "header.php";
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Color Challenge - Dashboard</title>
+    <title>Rainbow - Dashboard</title>
 </head>
 
 <body>

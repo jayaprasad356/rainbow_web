@@ -25,7 +25,7 @@
 <?php include "header.php";?>
 <html>
 <head>
-<title>Add Result | Color Challenge</title>
+<title>Add Result | Rainbow</title>
 </head>
 </body>
       <!-- Content Wrapper. Contains page content -->
