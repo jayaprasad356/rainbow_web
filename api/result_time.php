@@ -16,7 +16,13 @@ $db->connect();
 $date = new DateTime('now');
 
 // Round up to the next hour
-$date->setTime($date->format('H') + 1, 0, 0);
+// $date->setTime($date->format('H') + 1, 0, 0);
+
+
+// Round up to the next multiple of 5 minutes
+$minute = ceil($date->format('i')/5)*5;
+$date->setTime($date->format('H'), $minute, 0);
+
 
 // Format the date and time as a string
 $date_string = $date->format('Y-m-d H:i:s');

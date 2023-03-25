@@ -17,8 +17,10 @@ $today_date=date('Y-m-d');
 
 $date = new DateTime('now');
 
-// Round down to the previous hour
-$date->setTime($date->format('H'), 0, 0);
+// Round down to the previous 5-minute interval
+$minutes = $date->format('i');
+$minutes = $minutes - $minutes % 5;
+$date->setTime($date->format('H'), $minutes, 0);
 
 // Format the date and time as a string
 $date_string = $date->format('Y-m-d H:i:s');
@@ -29,7 +31,7 @@ $sql = "SELECT * FROM results WHERE datetime ='$date_string' ";
 $db->sql($sql);
 $res = $db->getResult();
 $curr_min = date('i');
-if (empty($res) && $curr_min == '00'){
+if (empty($res) && $curr_min % 5 == 0){
   $sql = "SELECT color_id, SUM(coins) as total_coins
   FROM challenges 
   WHERE datetime = '$date_string' 
@@ -79,5 +81,3 @@ if (empty($res) && $curr_min == '00'){
   $response['message'] = "Result Announced Successfully";
   print_r(json_encode($response));
 }
-
-
