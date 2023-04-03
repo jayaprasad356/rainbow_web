@@ -42,8 +42,20 @@ $coins = $db->escapeString($_POST['coins']);
 $date = new DateTime('now');
 
 // Round off to the nearest hour
-$date->modify('+' . (60 - $date->format('i')) . ' minutes');
-$date->setTime($date->format('H'), 0, 0);
+// $date->modify('+' . (60 - $date->format('i')) . ' minutes');
+// $date->setTime($date->format('H'), 0, 0);
+
+
+
+// Round off to the nearest five minutes
+$minutes = $date->format('i');
+$diff = 5 - $minutes % 5;
+if ($diff != 5) {
+    $date->modify("+$diff minutes");
+}
+$date->setTime($date->format('H'), $date->format('i'), 0);
+
+
 
 // Format the date and time as a string
 $date_string = $date->format('Y-m-d H:i:s');
